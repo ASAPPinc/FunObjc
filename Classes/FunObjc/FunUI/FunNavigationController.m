@@ -115,7 +115,7 @@ static BOOL hasSetup;
 
 - (id)_setup {
     if (hasSetup) {
-        [NSException raise:@"Error" format:@"Expects only one FunNavigationController to be created"];
+        return self;
     }
     hasSetup = true;
     self.delegate = self;
