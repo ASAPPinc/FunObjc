@@ -229,13 +229,13 @@ static CGFloat START_EDGE = 99999.0f;
         return;
     }
     
-    if (_hasContent && firstIndex <= _bottomItemIndex) {
-        [NSException raise:@"Invalid state" format:@"Appended item with index <= current bottom item index"];
+    if (!_hasContent) {
+        [self _renderInitialContent];
         return;
     }
     
-    if (!_hasContent) {
-        [self _renderInitialContent];
+    if (_hasContent && firstIndex <= _bottomItemIndex) {
+        [NSException raise:@"Invalid state" format:@"Appended item with index <= current bottom item index"];
         return;
     }
     
@@ -259,6 +259,13 @@ static CGFloat START_EDGE = 99999.0f;
     } else {
         [self extendBottom];
     }
+}
+
+- (void)appendToListCount:(NSUInteger)numItems startingAtIndex:(ListViewIndex)firstIndex isNewData:(BOOL)isNewData {
+    if (isNewData) {
+        _hasContent = NO;
+    }
+    [self appendToListCount:numItems startingAtIndex:firstIndex];
 }
 
 - (CGFloat)setHeight:(CGFloat)height forVisibleViewWithIndex:(ListViewIndex)index {

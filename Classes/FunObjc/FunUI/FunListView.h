@@ -86,6 +86,7 @@ enum ListViewDirection {
 - (void) reloadDataForList;
 - (void) stopScrollingList;
 - (void) appendToListCount:(NSUInteger)numItems startingAtIndex:(ListViewIndex)firstIndex;
+- (void) appendToListCount:(NSUInteger)numItems startingAtIndex:(ListViewIndex)firstIndex isNewData:(BOOL)isNewData;
 - (void) prependToListCount:(NSUInteger)numItems;
 - (CGFloat) setHeight:(CGFloat)height forVisibleViewWithIndex:(ListViewIndex)index;
 - (CGFloat) setWidth:(CGFloat)width forVisibleViewWithIndex:(ListViewIndex)index;
